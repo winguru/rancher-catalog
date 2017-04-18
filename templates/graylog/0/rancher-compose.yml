@@ -1,6 +1,6 @@
 .catalog:
     name: "Graylog"
-    version: "v2.2.3"
+    version: "v2.2.3-1"
     description: "Open source log management that actually works."
     questions:
         - variable: graylog_password
@@ -20,8 +20,9 @@
           label: "FQDN"
           type: "string"
           required: true
+          default: "0.0.0.0"
         - variable: es_service
           description: "ElasticSearch Service (Client Service)"
-          label: "es_service"
+          label: "ElasticSearch Service"
           type: "service"
           required: true
