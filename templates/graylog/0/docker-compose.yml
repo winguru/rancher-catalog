@@ -30,8 +30,25 @@ graylog:
     environment:
         GRAYLOG_PASSWORD_SECRET: ${graylog_secret}
         GRAYLOG_ROOT_PASSWORD_SHA2: ${graylog_password}
-        # GRAYLOG_REST_TRANSPORT_URI: "http://${graylog_fqdn}:12900"
-        GRAYLOG_REST_TRANSPORT_URI: "http://${graylog_fqdn}:9000"
+        # REST API listen URI. Must be reachable by other Graylog server nodes if you run a cluster.
+        # When using Graylog Collectors, this URI will be used to receive heartbeat messages and must be accessible for all collectors.
+        # #rest_listen_uri = http://127.0.0.1:9000/api/
+        GRAYLOG_REST_LISTEN_URI: "http://${graylog_fqdn}:9000/api/"
+        # REST API transport address. Defaults to the value of rest_listen_uri. Exception: If rest_listen_uri
+        # is set to a wildcard IP address (0.0.0.0) the first non-loopback IPv4 system address is used.
+        # If set, this will be promoted in the cluster discovery APIs, so other nodes may try to connect on
+        # this address and it is used to generate URLs addressing entities in the REST API. (see rest_listen_uri)
+        # You will need to define this, if your Graylog server is running behind a HTTP proxy that is rewriting
+        # the scheme, host name or URI.
+        # This must not contain a wildcard address (0.0.0.0).
+        # #rest_transport_uri = http://192.168.1.1:9000/api/
+        GRAYLOG_REST_TRANSPORT_URI: "http://${graylog_fqdn}:9000/api/"
+        # Web interface listen URI.
+        # Configuring a path for the URI here effectively prefixes all URIs in the web interface. This is a replacement
+        # for the application.context configuration parameter in pre-2.0 versions of the Graylog web interface.
+        # #web_listen_uri = http://127.0.0.1:9000/
+        GRAYLOG_WEB_LISTEN_URI: "http://${graylog_fqdn}:9000/"
+        GRAYLOG_WEB_ENDPOINT_URI: "http://${graylog_fqdn}:9000/api/"
     image: "graylog2/server:2.2.3-1"
     labels:
         io.rancher.container.hostname_override: container_name
