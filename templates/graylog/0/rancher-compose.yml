@@ -20,9 +20,9 @@
           label: "FQDN"
           type: "string"
           required: true
-          default: "0.0.0.0"
+          default: "127.0.0.1"
         - variable: es_service
-          description: "ElasticSearch Service (Client Service)"
+          description: "ElasticSearch Service (Masters Service)"
           label: "ElasticSearch Service"
           type: "service"
           required: true
