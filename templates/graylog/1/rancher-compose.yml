@@ -1,0 +1,28 @@
+.catalog:
+    name: "Graylog"
+    version: "latest"
+    description: "Open source log management that actually works."
+    questions:
+        - variable: graylog_password
+          description: "SHA256 of admin password, default is 'admin' (e.g. $echo -n <password> | shasum -a 256)"
+          label: "SHA2 Password"
+          type: "string"
+          required: true
+          default: "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
+        - variable: graylog_secret
+          description: "Password secret"
+          label: "Password secret"
+          type: "password"
+          required: true
+          default: "somepasswordpepper"
+        - variable: graylog_fqdn
+          description: "IP or Fully Qualified Domain Name for Web Inteface (port 9000)"
+          label: "FQDN"
+          type: "string"
+          required: true
+          default: "127.0.0.1"
+        - variable: es_service
+          description: "ElasticSearch Service (Masters Service)"
+          label: "ElasticSearch Service"
+          type: "service"
+          required: true
